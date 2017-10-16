@@ -1,0 +1,398 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title State of Selenium Webdriver in PHP
+
+    // build:css styles/styles.css
+    //- Check out 'src/bower_components/prism/themes/' for available themes
+    link(rel='stylesheet', type='text/css', href='bower_components/prism/themes/prism-tomorrow.css')
+    link(rel='stylesheet', type='text/css', href='styles/main.css')
+    link(rel='stylesheet', type='text/css', href='bower_components/prism/prism-tomorrow.css')
+
+    link(href='http://fonts.googleapis.com/css?family=Underdog&subset=latin,cyrillic', rel='stylesheet', type='text/css')
+    link(href='http://fonts.googleapis.com/css?family=Scada&subset=latin,cyrillic', rel='stylesheet', type='text/css')      
+    // endbuild
+
+  body
+
+    article
+
+      section
+        h1 Selenium Testing in PHP with Codeception
+
+      section(data-bespoke-state='emphatic')
+        h2 Michael Bodnarchuk
+        ul
+          li Web developer from Kyiv, Ukraine
+          li Consultant and Trainer at SDCLabs
+          li Lead developer of Codeception testing framework
+
+      section
+        h2 Let's talk about PHP
+        ul
+          li Yeah, it's still there
+          li It's not that bad
+          li It can be used for automated testing
+
+      section
+        h1 Modern PHP
+        p
+          img(src='images/php.jpg' style='width: 90%')
+
+      section
+        h2 Why PHP
+        ul
+          li PHP is used by <b>81.7% of</b> all the websites whose server-side programming language we know.
+          li PHP considered a simple language
+          li PHP developers!
+          li WordPress, Drupal, Magento, OSCommerce...
+          li Facebook, WikiPedia...
+
+      section
+        h2 Features of PHP
+        ul
+          li Object Oriented Language
+          li For #[strong server-side web development] only
+          li Born to DIE
+
+      section
+        h2 Legacy PHP
+        pre
+          code.language-php.
+            if (isset($_GET['code'])) {
+              if (strval($_SESSION['state']) !== strval($_GET['state'])) {
+                die('The session state did not match.');
+              }
+
+              $client->authenticate($_GET['code']);
+              $_SESSION['token'] = $client->getAccessToken();
+              header('Location: ' . $redirect);
+            }
+
+      section
+        div He was asked to fix a bug in legacy PHP 
+        div
+          img(src='images/horror.jpg' style='width: 90%')          
+
+      section
+        h2 Dark Ages
+        ul
+          li $ - prefixed variables
+          li C-inherited functions for strings and arrays
+          li Errors are not exceptions
+          li Backwards compatible since 1996
+          li Procedural programming
+          li HTML + PHP in one file
+
+      section
+        h2 Modern PHP 
+        pre
+          code.language-php.
+            namespace Acme\HelloBundle\Controller;
+            use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+            class HelloController extends Controller
+            {
+               /*
+                * @Route("/{id}", requirements={"name" = "\w+"})
+                */
+                public function indexAction($name)
+                {
+                    return $this->render(
+                        'Hello:index.html.twig', ['name' => $name]
+                    );
+                }
+            }            
+      section
+        div He fixes bugs in modern PHP like a boss 
+        div
+          img(src='images/solid.jpg' style='width: 60%')          
+
+
+      section
+        h2 PHP Today
+        ul
+          li Java-style OOP
+          li Namespaces
+          li Annotations
+          li Autoloading
+          li Coding standard <b>PSR</b>
+          li Package Manager - <b>Composer</b>
+
+      section
+        h2 Selenium Webdriver
+        p
+          img(src="images/selenium.jpg" style='width: 80%')
+
+      section
+        h2 WebDriver
+        ul
+          li No official Webdriver implementation
+          li But we have "facebook/php-webdriver"
+
+      section
+        h2 facebook/php-webdriver
+        ul
+          li Developed by Facebook
+          li Apache 2 license
+          li API is much similar to Java
+          li Selenium 2 and Selenium 3 compatible
+
+      section
+        h2 Selenium WebDriver Code
+        pre
+          code.language-php.
+            $search = $wd->findElement(WebDriverBy::id('js-command-bar-field'));
+            $search->click();
+            // typing into field
+            $wd->getKeyboard()->sendKeys('php-webdriver');
+            // pressing "Enter"
+            $wd->getKeyboard()->pressKey(WebDriverKeys::ENTER);
+            $firstResult = $wd->findElement(WebDriverBy::cssSelector('ul#list li'));
+            $firstResult->click();
+
+      section
+        h2 Testing Frameworks
+        ul
+          li PHPUnit
+          li Behat
+          li <b>Codeception</b>
+
+
+      section        
+        p
+         img(src="images/codeception.png" style='width: 80%')                 
+        h2 Codeception
+        ul
+          li BDD-style testing framework
+          li High-level API
+          li PageObject/StepObject included
+          li Easy to read, write, debug
+
+      section
+         pre
+          code.language-php.
+            // Custom method
+            $I->loginAsAdmin();
+            // Navigate to the Media Library
+            $I->amOnPage( '/wp-admin' );
+            $I->click('New Media');
+            $I->waitForText( 'Upload New Media' );
+
+            // Add new file
+            $I->attachFile( 'input[type="file"]', 'team.jpg' );
+
+            // Wait for upload
+            $I->waitForElement( '.edit-attachment', 20 );
+
+            // Assertion
+            $I->see( 'Edit Media' );
+
+      section
+         h2 Let's remove PHP stuff 
+         div This code can be easily read by non-PHP developers
+         pre
+          code.language-php.
+            I loginAsAdmin
+            I amOnPage '/wp-admin'
+            I click 'New Media' 
+            I waitForText 'Upload New Media' 
+            I attachFile 'input[type="file"]', 'team.jpg' 
+            I waitForElement '.edit-attachment', 20
+            I see 'Edit Media' 
+
+      section
+         h2 Codeception Tests 
+         ul
+            li Written from user's perspective: I->click, I->see
+            li Focused on test scenario, not on implementation
+            li Separate test from support code
+
+      section
+        h2 Locators
+        ul
+          li CSS
+          li XPath
+          li Button | Link Texts
+          li Field Names
+          li Field Labels        
+
+      section
+        h4 Page Objects in Codeception
+        pre
+          code.language-php.
+            // routes
+            public static $rootUrl  = '/tasks';
+
+            // UI elements
+            public $viewButton = ['css' => 'a.view'];
+            
+            // actions
+            public function createTask($task)
+            { 
+              $I = $this->i;
+              $I->amOnPage(self::$addUrl);
+              $I->click('Add Task');
+              $I->fillField('To do', $task);
+              $I->click('Create');
+            }
+
+
+      section
+        h4 Using PageObjects in Tests
+        pre
+          code.language-php.
+            public function viewTask(AcceptanceTester $I, 
+              \Page\Task $taskPage)
+            {    
+              // create initial data
+              $this->taskId = $taskPage->createTask('Finish the test'); 
+              $I->amOnPage($tasksPage->rootUrl); // move to page
+              $I->see('Displaying 1-1 of 1 result.','.summary');
+              $I->click($taskPage->viewButton); // using PageObject
+              $I->see('Finish the test', 'h2'); 
+            }
+
+      section
+        h4 Step by Step Report
+        pre
+          code.language-php.
+            Test: view task
+            Scenario --
+              \Page\TaskPage: createTask                      
+                 I am on page "/tasks"
+                 I click 'Add Task'
+                 I fill field 'To do', 'Finish the test'
+                 I click 'Create'               
+              I see 'Displaying 1-1 of 1 result.','.summary'
+              I click { css: 'a.view'}
+              I see 'Finish the test', 'h2'
+
+      section
+        h4 Complex End 2 End Test
+        pre
+          code.language-php.
+            /** @after deleteWebSite */
+            public function editWebSite(
+              \AcceptanceTester $I, 
+              \Page\WebSite $page, 
+              \Page\WebSiteForm $editPage)
+            {
+                $this->websiteId = 'site'.sq(1);
+                $page->createWebSite(['id' => $this->websiteId]);
+                $editPage->open($this->websiteId);
+                $I->see('Update '.$page->websiteName, 'h1');
+                $editPage->update(['name' => 'EditedSite'.sq(2)]);
+                $I->amOnPage($page->rootUrl);
+                $I->expect('new website name is in grid')
+                $I->dontSee($page->websiteName, $page->grid);
+                $I->see('EditedSite'.sq(2),$ page->grid);
+            }
+
+      section
+        h4 Test Output
+        pre
+          code.language-php.
+            Edit website (\WebsiteCest::editWebsite)
+            Scenario:
+            * I login 
+              I am on page "/site/login/"
+              I fill field "E-mail","mrdummy@mail.com"
+              I fill field "Password","dummy123"
+              I check option "Remember me"
+              I click {"css":".rebilly-login-button"}
+              I see "Overview","h1"
+            * \Page\WebSite: createWebSite {"id": "site_559fa20cda337"}
+              I am on page "/websites/add"
+              I see "Add Website"
+              I fill field "Website Id","site_559fa20cda337"
+              I fill field "Website Name","web-test"
+              I fill field "Domain","http://www.pushplay.com"
+              I fill field "Customer Service Phone","123456789"
+              I fill field "Customer Service Email","websitetest@gmail1.com"
+              I fill field "Webhook Url","http://www.webtest.com/123abc"
+              I click "Save Website"
+              I wait 1            
+
+      section
+        h2 Reports
+        ul
+          li Console reports (default)
+          li XML reports
+          li HTML reports
+          li CodeCoverage reports
+
+      section
+        h4 HTML Report
+        p
+          img(src="images/codeception-report-html.png" style="width: 120%")
+
+
+      section
+        h2 BDD in Codeception 
+        ul
+          li Business specifications written by examples
+          li Example scenarios in plain English (like in Cucumber)
+          li Scenarios can be executed as tests
+
+
+      section 
+        h2 BDD Example
+        pre
+          code.language-ruby.
+            Feature: content
+              In order to manage content article in the web
+              As an owner
+              I need to unpublish content article
+
+              Background:
+                Given Joomla CMS is installed
+                When Login into Joomla administrator
+                Then I see administrator dashboard
+
+              Scenario: Create an Article
+                Given There is a add content link
+                When I create new content with "My_Article"
+                And I save an article
+                Then I should see "Article successfully saved."
+       
+
+      section
+        h2 How to Wait For Elements
+        ul
+          li wait(2) - wait for 2 seconds
+          li waitForElement, waitForText
+          li SmartWaits (based on Implicit Waits)
+
+      section
+        h2 Other Notable Features
+        ul
+          li Interactive Console
+          li Session Snapshots
+          li Multi-Session Testing
+
+      section
+        h2 Test Data Management
+        ul
+          li Via database connection
+          li Via REST API
+          li By accessing PHP app directly
+
+        
+
+
+
+    // build:js scripts/scripts.js
+    script(src='bower_components/bespoke.js/dist/bespoke.min.js')
+    script(src='bower_components/bespoke-keys/dist/bespoke-keys.min.js')
+    script(src='bower_components/bespoke-touch/dist/bespoke-touch.min.js')
+    script(src='bower_components/bespoke-bullets/dist/bespoke-bullets.min.js')
+    script(src='bower_components/bespoke-scale/dist/bespoke-scale.min.js')
+    script(src='bower_components/bespoke-hash/dist/bespoke-hash.min.js')
+    script(src='bower_components/bespoke-progress/dist/bespoke-progress.min.js')
+    script(src='bower_components/bespoke-state/dist/bespoke-state.min.js')
+    script(src='bower_components/prism/prism.js')
+    script(src='scripts/main.js')
+    // endbuild          
