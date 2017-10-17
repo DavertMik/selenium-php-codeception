@@ -7,12 +7,12 @@ html
 
     // build:css styles/styles.css
     //- Check out 'src/bower_components/prism/themes/' for available themes
-    link(rel='stylesheet', type='text/css', href='bower_components/prism/themes/prism-tomorrow.css')
+    link(rel='stylesheet', type='text/css', href='bower_components/prism/themes/prism-coy.css')
     link(rel='stylesheet', type='text/css', href='styles/main.css')
-    link(rel='stylesheet', type='text/css', href='bower_components/prism/prism-tomorrow.css')
+    link(rel='stylesheet', type='text/css', href='bower_components/prism/prism-coy.css')
 
-    link(href='http://fonts.googleapis.com/css?family=Underdog&subset=latin,cyrillic', rel='stylesheet', type='text/css')
-    link(href='http://fonts.googleapis.com/css?family=Scada&subset=latin,cyrillic', rel='stylesheet', type='text/css')      
+    link(href='http://fonts.googleapis.com/css?family=Scada&subset=latin,cyrillic', rel='stylesheet', type='text/css')
+    link(href='http://fonts.googleapis.com/css?family=Bitter&subset=latin,cyrillic', rel='stylesheet', type='text/css')      
     // endbuild
 
   body
@@ -21,13 +21,16 @@ html
 
       section
         h1 Selenium Testing in PHP with Codeception
+        div TestCon Vilnus 2017 
 
       section(data-bespoke-state='emphatic')
+
+        img(src="images/me.jpg" style='height: 100px; border-radius: 50px;')                         
         h2 Michael Bodnarchuk
         ul
           li Web developer from Kyiv, Ukraine
-          li Consultant and Trainer at SDCLabs
-          li Lead developer of Codeception testing framework
+          li Consultant and Trainer at <b>SDCLabs</b>
+          li Lead developer of <b>Codeception</b> testing framework
 
       section
         h2 Let's talk about PHP
@@ -85,6 +88,10 @@ html
           li Backwards compatible since 1996
           li Procedural programming
           li HTML + PHP in one file
+
+      section
+        p <blockquote class="twitter-tweet" data-partner="tweetdeck"><p lang="en" dir="ltr">Hiring PHP devs in Finland in 3 steps:<br><br>1. Don&#39;t mention PHP in job ad<br>2. Entertain during trial period w/ Go, JS…<br>3. Hand over PHP projects</p>&mdash; Jani Tarvainen (@velmu) <a href="https://twitter.com/velmu/status/920180433912057856?ref_src=twsrc%5Etfw">October 17, 2017</a></blockquote>
+        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>        
 
       section
         h2 Modern PHP 
@@ -194,7 +201,7 @@ html
          h2 Let's remove PHP stuff 
          div This code can be easily read by non-PHP developers
          pre
-          code.language-php.
+          code.language-bash.
             I loginAsAdmin
             I amOnPage '/wp-admin'
             I click 'New Media' 
@@ -349,15 +356,11 @@ html
 
               Background:
                 Given Joomla CMS is installed
-                When Login into Joomla administrator
-                Then I see administrator dashboard
 
               Scenario: Create an Article
                 Given There is a add content link
                 When I create new content with "My_Article"
-                And I save an article
-                Then I should see "Article successfully saved."
-       
+                Then I should see "Article successfully saved."       
 
       section
         h2 How to Wait For Elements
@@ -380,9 +383,27 @@ html
           li Via REST API
           li By accessing PHP app directly
 
-        
 
+      section
+        h2 Architecture
+        ul
+          li Methods are defined in modules (ex: I->click())
+          li Modules can be combined (ex: WebDriver, Db, Redis)
+          li Custom modules can be created
 
+      section
+        h2 Conclusion
+        ul
+          li Codeception is full-stack testing framework in PHP
+          li Codeception can be used for end to end tests with WebDriver
+          li Codeception <b>separates test from implementation</b>
+
+      section
+        h2 Questions?
+        p I'm <b>Michael Bodnarchuk</b>  🐦 @davert
+        ul
+          li Codeception: <a href="http://codeception.com">codeception.com</a>
+          li CodeceptJS (for NodeJS) <a href="http://codecept.io">codecept.io</a>
 
     // build:js scripts/scripts.js
     script(src='bower_components/bespoke.js/dist/bespoke.min.js')

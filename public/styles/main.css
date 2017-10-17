@@ -234,22 +234,24 @@ code {
   padding: 26px !important;
 }
 body {
-  font-family: helvetica, arial, sans-serif;
+  font-family: 'Scada', helvetica, arial, sans-serif;
   font-size: 18px;
   color: #404040;
 }
 h1 {
-  font-family: 'Underdog';
+  font-family: 'Bitter', serif;
+  font-weight: bold;
   font-size: 72px;
   line-height: 82px;
   letter-spacing: -2px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 h2 {
-  font-family: 'Scada', sans-serif;
+  font-family: 'Bitter', serif;
+  font-weight: bold;
   font-size: 42px;
   letter-spacing: -1px;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
 h3 {
   font-size: 24px;

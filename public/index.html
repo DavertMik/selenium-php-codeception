@@ -5,24 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>State of Selenium Webdriver in PHP</title>
     <!-- build:css styles/styles.css-->
-    <link rel="stylesheet" type="text/css" href="bower_components/prism/themes/prism-tomorrow.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/prism/themes/prism-coy.css">
     <link rel="stylesheet" type="text/css" href="styles/main.css">
-    <link rel="stylesheet" type="text/css" href="bower_components/prism/prism-tomorrow.css">
-    <link href="http://fonts.googleapis.com/css?family=Underdog&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="bower_components/prism/prism-coy.css">
     <link href="http://fonts.googleapis.com/css?family=Scada&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Bitter&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
     <!-- endbuild-->
   </head>
   <body>
     <article>
       <section>
         <h1>Selenium Testing in PHP with Codeception</h1>
+        <div>TestCon Vilnus 2017 </div>
       </section>
-      <section data-bespoke-state="emphatic">
+      <section data-bespoke-state="emphatic"><img src="images/me.jpg" style="height: 100px; border-radius: 50px;">
         <h2>Michael Bodnarchuk</h2>
         <ul>
           <li>Web developer from Kyiv, Ukraine</li>
-          <li>Consultant and Trainer at SDCLabs</li>
-          <li>Lead developer of Codeception testing framework</li>
+          <li>Consultant and Trainer at <b>SDCLabs</b></li>
+          <li>Lead developer of <b>Codeception</b> testing framework</li>
         </ul>
       </section>
       <section>
@@ -82,6 +83,9 @@
           <li>Procedural programming</li>
           <li>HTML + PHP in one file</li>
         </ul>
+      </section>
+      <section>
+        <p><blockquote class="twitter-tweet" data-partner="tweetdeck"><p lang="en" dir="ltr">Hiring PHP devs in Finland in 3 steps:<br><br>1. Don&#39;t mention PHP in job ad<br>2. Entertain during trial period w/ Go, JS…<br>3. Hand over PHP projects</p>&mdash; Jani Tarvainen (@velmu) <a href="https://twitter.com/velmu/status/920180433912057856?ref_src=twsrc%5Etfw">October 17, 2017</a></blockquote></p><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>        
       </section>
       <section>
         <h2>Modern PHP </h2>
@@ -187,7 +191,7 @@ $I->see( 'Edit Media' );
       <section>
         <h2>Let's remove PHP stuff </h2>
         <div>This code can be easily read by non-PHP developers</div>
-        <pre><code class="language-php">I loginAsAdmin
+        <pre><code class="language-bash">I loginAsAdmin
 I amOnPage '/wp-admin'
 I click 'New Media' 
 I waitForText 'Upload New Media' 
@@ -336,15 +340,11 @@ Scenario:
   
   Background:
     Given Joomla CMS is installed
-    When Login into Joomla administrator
-    Then I see administrator dashboard
     
   Scenario: Create an Article
     Given There is a add content link
     When I create new content with "My_Article"
-    And I save an article
-    Then I should see "Article successfully saved."
-    
+    Then I should see "Article successfully saved."       
     </code></pre>
       </section>
       <section>
@@ -369,6 +369,30 @@ Scenario:
           <li>Via database connection</li>
           <li>Via REST API</li>
           <li>By accessing PHP app directly</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Architecture</h2>
+        <ul>
+          <li>Methods are defined in modules (ex: I->click())</li>
+          <li>Modules can be combined (ex: WebDriver, Db, Redis)</li>
+          <li>Custom modules can be created</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Conclusion</h2>
+        <ul>
+          <li>Codeception is full-stack testing framework in PHP</li>
+          <li>Codeception can be used for end to end tests with WebDriver</li>
+          <li>Codeception <b>separates test from implementation</b></li>
+        </ul>
+      </section>
+      <section>
+        <h2>Questions?</h2>
+        <p>I'm <b>Michael Bodnarchuk</b>  🐦 @davert</p>
+        <ul>
+          <li>Codeception: <a href="http://codeception.com">codeception.com</a></li>
+          <li>CodeceptJS (for NodeJS) <a href="http://codecept.io">codecept.io</a></li>
         </ul>
       </section>
     </article>
