@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>State of Selenium Webdriver in PHP</title>
+    <link rel="stylesheet" href="styles/styles.css"/>
+  </head>
+  <body>
+    <article>
+      <section>
+        <h1>Selenium Testing in PHP with Codeception</h1>
+        <div>TestCon Vilnus 2017 </div>
+      </section>
+      <section data-bespoke-state="emphatic"><img src="images/me.jpg" style="height: 100px; border-radius: 50px;">
+        <h2>Michael Bodnarchuk</h2>
+        <ul>
+          <li>Web developer from Kyiv, Ukraine</li>
+          <li>Consultant and Trainer at <b>SDCLabs</b></li>
+          <li>Lead developer of <b>Codeception</b> testing framework</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Let's talk about PHP</h2>
+        <ul>
+          <li>Yeah, it's still there</li>
+          <li>It's not that bad</li>
+          <li>It can be used for automated testing</li>
+        </ul>
+      </section>
+      <section>
+        <h1>Modern PHP</h1>
+        <p><img src="images/php.jpg" style="width: 90%"></p>
+      </section>
+      <section>
+        <h2>Why PHP</h2>
+        <ul>
+          <li>PHP is used by <b>81.7% of</b> all the websites whose server-side programming language we know.</li>
+          <li>PHP considered a simple language</li>
+          <li>PHP developers!</li>
+          <li>WordPress, Drupal, Magento, OSCommerce...</li>
+          <li>Facebook, WikiPedia...</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Features of PHP</h2>
+        <ul>
+          <li>Object Oriented Language</li>
+          <li>For <strong>server-side web development</strong> only</li>
+          <li>Born to DIE</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Legacy PHP</h2>
+        <pre><code class="language-php">if (isset($_GET['code'])) {
+  if (strval($_SESSION['state']) !== strval($_GET['state'])) {
+    die('The session state did not match.');
+  }
+  
+  $client->authenticate($_GET['code']);
+  $_SESSION['token'] = $client->getAccessToken();
+  header('Location: ' . $redirect);
+}
+</code></pre>
+      </section>
+      <section>
+        <div>Fixing a bug in legacy PHP may look like this </div>
+        <div><img src="images/horror.jpg" style="width: 90%"></div>
+      </section>
+      <section>
+        <h2>Dark Ages</h2>
+        <ul>
+          <li>$ - prefixed variables</li>
+          <li>C-inherited functions for strings and arrays</li>
+          <li>Errors are not exceptions</li>
+          <li>Backwards compatible since 1996</li>
+          <li>Procedural programming</li>
+          <li>HTML + PHP in one file</li>
+        </ul>
+      </section>
+      <section>
+        <p><blockquote class="twitter-tweet" data-partner="tweetdeck"><p lang="en" dir="ltr">Hiring PHP devs in Finland in 3 steps:<br><br>1. Don&#39;t mention PHP in job ad<br>2. Entertain during trial period w/ Go, JS…<br>3. Hand over PHP projects</p>&mdash; Jani Tarvainen (@velmu) <a href="https://twitter.com/velmu/status/920180433912057856?ref_src=twsrc%5Etfw">October 17, 2017</a></blockquote></p><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>        
+      </section>
+      <section>
+        <h2>Modern PHP </h2>
+        <pre><code class="language-php">namespace Acme\HelloBundle\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+class HelloController extends Controller
+{
+   /*
+    * @Route("/{id}", requirements={"name" = "\w+"})
+    */
+    public function indexAction($name)
+    {
+        return $this->render(
+            'Hello:index.html.twig', ['name' => $name]
+        );
+    }
+}            </code></pre>
+      </section>
+      <section>
+        <div>Fixing bugs in modern PHP like a boss </div>
+        <div><img src="images/solid.jpg" style="width: 60%">
+          <div>[motivational picture]</div>
+        </div>
+      </section>
+      <section>
+        <h2>PHP Today</h2>
+        <ul>
+          <li>Java-style OOP</li>
+          <li>Namespaces</li>
+          <li>Annotations</li>
+          <li>Autoloading</li>
+          <li>Coding standard <b>PSR</b></li>
+          <li>Package Manager - <b>Composer</b></li>
+        </ul>
+      </section>
+      <section>
+        <h2>Selenium Webdriver</h2>
+        <p><img src="images/selenium.jpg" style="width: 80%"></p>
+      </section>
+      <section>
+        <h2>WebDriver</h2>
+        <ul>
+          <li>No official Webdriver implementation</li>
+          <li>But we have "facebook/php-webdriver"</li>
+        </ul>
+      </section>
+      <section>
+        <h2>facebook/php-webdriver</h2>
+        <ul>
+          <li>Developed by Facebook</li>
+          <li>Apache 2 license</li>
+          <li>API is much similar to Java</li>
+          <li>Selenium 2 and Selenium 3 compatible</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Selenium WebDriver Code</h2>
+        <pre><code class="language-php">$search = $wd->findElement(WebDriverBy::id('js-command-bar-field'));
+$search->click();
+// typing into field
+$wd->getKeyboard()->sendKeys('php-webdriver');
+// pressing "Enter"
+$wd->getKeyboard()->pressKey(WebDriverKeys::ENTER);
+$firstResult = $wd->findElement(WebDriverBy::cssSelector('ul#list li'));
+$firstResult->click();
+</code></pre>
+      </section>
+      <section>
+        <h2>Testing Frameworks</h2>
+        <ul>
+          <li>PHPUnit</li>
+          <li>Behat</li>
+          <li><b>Codeception</b></li>
+        </ul>
+      </section>
+      <section>       
+        <p><img src="images/codeception.png" style="width: 80%"></p>
+        <h2>Codeception</h2>
+        <ul>
+          <li>BDD-style testing framework</li>
+          <li>High-level API</li>
+          <li>PageObject/StepObject included</li>
+          <li>Easy to read, write, debug</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Install Codeception</h2>
+        <p><img src="images/codecept_acceptance.gif" style="width: 120%"></p>
+      </section>
+      <section>
+        <pre><code class="language-php">// Custom method
+$I->loginAsAdmin();
+// Navigate to the Media Library
+$I->amOnPage( '/wp-admin' );
+$I->click('New Media');
+$I->waitForText( 'Upload New Media' );
+
+// Add new file
+$I->attachFile( 'input[type="file"]', 'team.jpg' );
+
+// Wait for upload
+$I->waitForElement( '.edit-attachment', 20 );
+
+// Assertion
+$I->see( 'Edit Media' );
+</code></pre>
+      </section>
+      <section>
+        <h2>Let's remove PHP stuff </h2>
+        <div>This code can be easily read by non-PHP developers</div>
+        <pre><code class="language-bash">I loginAsAdmin
+I amOnPage '/wp-admin'
+I click 'New Media' 
+I waitForText 'Upload New Media' 
+I attachFile 'input[type="file"]', 'team.jpg' 
+I waitForElement '.edit-attachment', 20
+I see 'Edit Media' 
+</code></pre>
+      </section>
+      <section>
+        <h2>Codeception Tests </h2>
+        <ul>
+          <li>Written from user's perspective: I->click, I->see</li>
+          <li>Focused on test scenario, not on implementation</li>
+          <li>Separate test from support code</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Locators</h2>
+        <ul>
+          <li>CSS</li>
+          <li>XPath</li>
+          <li>Button | Link Texts</li>
+          <li>Field Names</li>
+          <li>Field Labels        </li>
+        </ul>
+      </section>
+      <section>
+        <h4>Page Objects in Codeception</h4>
+        <pre><code class="language-php">// routes
+public static $rootUrl  = '/tasks';
+
+// UI elements
+public $viewButton = ['css' => 'a.view'];
+
+// actions
+public function createTask($task)
+{ 
+  $I = $this->i;
+  $I->amOnPage(self::$addUrl);
+  $I->click('Add Task');
+  $I->fillField('To do', $task);
+  $I->click('Create');
+}
+
+</code></pre>
+      </section>
+      <section>
+        <h4>Using PageObjects in Tests</h4>
+        <pre><code class="language-php">public function viewTask(AcceptanceTester $I, 
+  \Page\Task $taskPage)
+{    
+  // create initial data
+  $this->taskId = $taskPage->createTask('Finish the test'); 
+  $I->amOnPage($tasksPage->rootUrl); // move to page
+  $I->see('Displaying 1-1 of 1 result.','.summary');
+  $I->click($taskPage->viewButton); // using PageObject
+  $I->see('Finish the test', 'h2'); 
+}
+</code></pre>
+      </section>
+      <section>
+        <h4>Step by Step Report</h4>
+        <pre><code class="language-php">Test: view task
+Scenario --
+  \Page\TaskPage: createTask                      
+     I am on page "/tasks"
+     I click 'Add Task'
+     I fill field 'To do', 'Finish the test'
+     I click 'Create'               
+  I see 'Displaying 1-1 of 1 result.','.summary'
+  I click { css: 'a.view'}
+  I see 'Finish the test', 'h2'
+  </code></pre>
+      </section>
+      <section>
+        <h4>Complex End 2 End Test</h4>
+        <pre><code class="language-php">/** @after deleteWebSite */
+public function editWebSite(
+  \AcceptanceTester $I, 
+  \Page\WebSite $page, 
+  \Page\WebSiteForm $editPage)
+{
+    $this->websiteId = 'site'.sq(1);
+    $page->createWebSite(['id' => $this->websiteId]);
+    $editPage->open($this->websiteId);
+    $I->see('Update '.$page->websiteName, 'h1');
+    $editPage->update(['name' => 'EditedSite'.sq(2)]);
+    $I->amOnPage($page->rootUrl);
+    $I->expect('new website name is in grid')
+    $I->dontSee($page->websiteName, $page->grid);
+    $I->see('EditedSite'.sq(2),$ page->grid);
+}
+</code></pre>
+      </section>
+      <section>
+        <h4>Test Output</h4>
+        <pre><code class="language-php">Edit website (\WebsiteCest::editWebsite)
+Scenario:
+* I login 
+  I am on page "/site/login/"
+  I fill field "E-mail","mrdummy@mail.com"
+  I fill field "Password","dummy123"
+  I check option "Remember me"
+  I click {"css":".rebilly-login-button"}
+  I see "Overview","h1"
+* \Page\WebSite: createWebSite {"id": "site_559fa20cda337"}
+  I am on page "/websites/add"
+  I see "Add Website"
+  I fill field "Website Id","site_559fa20cda337"
+  I fill field "Website Name","web-test"
+  I fill field "Domain","http://www.pushplay.com"
+  I fill field "Customer Service Phone","123456789"
+  I fill field "Customer Service Email","websitetest@gmail1.com"
+  I fill field "Webhook Url","http://www.webtest.com/123abc"
+  I click "Save Website"
+  I wait 1            
+  </code></pre>
+      </section>
+      <section>
+        <h2>Reports</h2>
+        <ul>
+          <li>Console reports (default)</li>
+          <li>XML reports</li>
+          <li>HTML reports</li>
+          <li>CodeCoverage reports</li>
+        </ul>
+      </section>
+      <section>
+        <h4>HTML Report</h4>
+        <p><img src="images/codecept-html-screenshot.png" style="width: 120%"></p>
+      </section>
+      <section>
+        <h2>BDD in Codeception </h2>
+        <ul>
+          <li>Business specifications written by examples</li>
+          <li>Example scenarios in plain English (like in Cucumber)</li>
+          <li>Scenarios can be executed as tests</li>
+        </ul>
+      </section>
+      <section>
+        <h2>BDD Example</h2>
+        <pre><code class="language-ruby">Feature: content
+  In order to manage content article in the web
+  As an owner
+  I need to unpublish content article
+  
+  Background:
+    Given Joomla CMS is installed
+    
+  Scenario: Create an Article
+    Given There is a add content link
+    When I create new content with "My_Article"
+    Then I should see "Article successfully saved."       
+    </code></pre>
+      </section>
+      <section>
+        <h2>BDD step implementation</h2>
+        <pre><code class="language-php">/**
+ * @When I create new content with :title
+ */
+public function iCreateNewContent($title)
+{
+  $I = $this->i;
+  $I->fillField(self::$title, $title);
+  $I->scrollTo(['css' => 'div.toggle-editor']);
+  $I->click(self::$toggleEditor);
+}            
+</code></pre>
+      </section>
+      <section>
+        <h2>Enhanced BDD <br><small> Solving Bug == Feature antipattern</small></h2>
+        <p>Combine tests and features:</p>
+        <ul>
+          <li>Feature as happy test scenario</li>
+          <li>Test for different behaviors</li>
+        </ul>
+      </section>
+      <section>
+        <h2>How to Wait For Elements</h2>
+        <ul>
+          <li>wait(2) - wait for 2 seconds</li>
+          <li>waitForElement, waitForText</li>
+          <li>SmartWaits (based on Implicit Waits)</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Other Notable Features</h2>
+        <ul>
+          <li>Interactive Console</li>
+          <li>Session Snapshots</li>
+          <li>Multi-Session Testing</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Test Data Management</h2>
+        <ul>
+          <li>Via database connection</li>
+          <li>Via REST API</li>
+          <li>By accessing PHP app directly</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Architecture</h2>
+        <ul>
+          <li>Methods are defined in modules (ex: I->click())</li>
+          <li>Modules can be combined (ex: WebDriver, Db, Redis)</li>
+          <li>Custom modules can be created</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Conclusion</h2>
+        <ul>
+          <li>Codeception is full-stack testing framework in PHP</li>
+          <li>Codeception can be used for end to end tests with WebDriver</li>
+          <li>Codeception <b>separates test from implementation</b></li>
+        </ul>
+      </section>
+      <section>
+        <h2>Questions?</h2>
+        <p>I'm <b>Michael Bodnarchuk</b>  🐦 @davert</p>
+        <ul>
+          <li>Codeception: <a href="http://codeception.com">codeception.com</a></li>
+          <li>CodeceptJS (for NodeJS) <a href="http://codecept.io">codecept.io</a></li>
+        </ul>
+      </section>
+    </article>
+    <script src="scripts/scripts.js"></script>
+  </body>
+</html>
